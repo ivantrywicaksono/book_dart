@@ -16,9 +16,32 @@ class Book {
     print('Tahun: ${year}');
   }
 
-  void updateBook() {
-    // TODO: FEBRI
+   void updateBook() {
+    print('Informasi apa yang ingin Anda perbarui?');
+    print('1. Judul');
+    print('2. Penulis');
+    print('3. Tahun');
+
+    int pilihan = int.parse(stdin.readLineSync()!);
+
+    switch (pilihan) {
+      case 1:
+        print('Masukkan judul baru:');
+        title = stdin.readLineSync()!;
+        break;
+      case 2:
+        print('Masukkan penulis baru:');
+        author = stdin.readLineSync()!;
+        break;
+      case 3:
+        print('Masukkan tahun baru:');
+        year = int.parse(stdin.readLineSync()!);
+        break;
+      default:
+        print('Pilihan tidak valid.');
+    }
   }
+
 }
 
 // Define a class to manage the book collection
