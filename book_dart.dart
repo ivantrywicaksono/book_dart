@@ -16,7 +16,7 @@ class Book {
     print('Tahun: ${year}');
   }
 
-   void updateBook() {
+  void updateBook() {
     print('Informasi apa yang ingin Anda perbarui?');
     print('1. Judul');
     print('2. Penulis');
@@ -41,7 +41,6 @@ class Book {
         print('Pilihan tidak valid.');
     }
   }
-
 }
 
 // Define a class to manage the book collection
@@ -72,7 +71,17 @@ class BookCollection {
   }
 
   void editBook(int index) {
-    // TODO: MELINDA
+    if (_books.isEmpty) {
+      print('Data masih kosong!');
+      return;
+    }
+
+    if (index < 1 || index > _books.length) {
+      print('Nomor buku tidak valid!');
+      return;
+    }
+
+    _books[index - 1].updateBook();
   }
 
   void deleteBook(int index) {
@@ -114,6 +123,10 @@ void main() {
         break;
       case '3':
         // Mengubah data
+        bookCollection.showBooks();
+        print("Masukkan nomor buku yang akan diedit: ");
+        int index = int.parse(stdin.readLineSync()!);
+        bookCollection.editBook(index);
         break;
       case '4':
         // Menghapus data
@@ -142,37 +155,4 @@ void printMenu() {
   print('5. Keluar');
   print('---------------------');
   print('Masukkan pilihan: ');
-}
-
-
-
-
-// Contoh
-
-void ubahData(List<Map<String, String>> data) {
-  if (data.isEmpty) {
-    print('Data masih kosong!');
-    return;
-  }
-
-  print('Masukkan nomor data yang ingin diubah: ');
-  int index = int.parse(stdin.readLineSync()!);
-
-  if (index <= 0 || index > data.length) {
-    print('Nomor data tidak valid!');
-    return;
-  }
-
-  print('Masukkan nama baru: ');
-  String nama = stdin.readLineSync()!;
-  print('Masukkan usia baru: ');
-  int usia = int.parse(stdin.readLineSync()!);
-
-  // Mengubah data pada list/map
-  data[index - 1] = {
-    'nama': nama,
-    'usia': usia.toString(),
-  };
-
-  print('Data berhasil diubah!');
 }
