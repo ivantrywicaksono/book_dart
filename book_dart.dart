@@ -53,7 +53,21 @@ class BookCollection {
   }
 
   void deleteBook(int index) {
-    // TODO: ARTA
+    if (_books.isEmpty) {
+      print('Data masih kosong!');
+      return;
+    }
+
+    print('Masukkan nomor buku yang ingin dihapus: ');
+
+    if (index <= 0 || index > _books.length) {
+      print('Nomor buku tidak valid!');
+      return;
+    }
+
+    _books.removeAt(index - 1);
+
+    print('Buku berhasil dihapus!');
   }
 }
 
@@ -80,6 +94,10 @@ void main() {
         break;
       case '4':
         // Menghapus data
+        bookCollection.showBooks();
+        print("Masukkan nomor buku yang akan dihapus: ");
+        int index = int.parse(stdin.readLineSync()!);
+        bookCollection.deleteBook(index);
         break;
       case '5':
         // Keluar dari aplikasi
@@ -134,24 +152,4 @@ void ubahData(List<Map<String, String>> data) {
   };
 
   print('Data berhasil diubah!');
-}
-
-void hapusData(List<Map<String, String>> data) {
-  if (data.isEmpty) {
-    print('Data masih kosong!');
-    return;
-  }
-
-  print('Masukkan nomor data yang ingin dihapus: ');
-  int index = int.parse(stdin.readLineSync()!);
-
-  if (index <= 0 || index > data.length) {
-    print('Nomor data tidak valid!');
-    return;
-  }
-
-  // Menghapus data dari list
-  data.removeAt(index - 1);
-
-  print('Data berhasil dihapus!');
 }
